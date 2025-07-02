@@ -242,4 +242,47 @@ npm run storybook
 
 ## 📄 许可证
 
-MIT License
+[MIT License](LICENSE).
+
+## 📋 版本更新记录
+
+### v0.2.0 (2024-12-19)
+
+**🔧 代码质量增强**
+- ✅ 启用 TypeScript 严格模式
+  - 添加完整的严格类型检查配置
+  - 包括 `strict`、`noImplicitAny`、`strictNullChecks` 等选项
+  - 提升类型安全性和代码可靠性
+- ✅ ESLint 规则增强
+  - 添加 TypeScript 严格规则：禁止 `any` 类型、未使用变量检查
+  - 增强 Vue 组件规则：组件命名规范、HTML 属性格式
+  - 添加代码质量规则：优先使用 `const`、禁止 `var`
+  - 配置忽略自动生成的类型文件
+- ✅ 修复配置兼容性问题
+  - 解决 commitlint 配置文件模块格式问题
+  - 优化 ESLint 配置以避免规则冲突
+  - 确保所有代码质量工具正常工作
+
+**📈 开发体验提升**
+- 更严格的类型检查帮助在开发阶段捕获潜在错误
+- 统一的代码风格和质量标准
+- 更好的 IDE 支持和错误提示
+
+### v0.1.0 (2024-12-18)
+
+**🎉 初始版本**
+- ✅ 基础项目架构搭建
+- ✅ Vue 3 + TypeScript + Vite 开发环境
+- ✅ Pinia 状态管理集成
+- ✅ UnoCSS 原子化样式系统
+- ✅ Storybook 组件文档系统
+- ✅ 基础组件：BrickButton、BrickCard
+- ✅ 代码规范工具：ESLint + Prettier + Husky
+- ✅ Git 提交规范：commitlint + conventional commits
+- ✅ 自动导入配置：Vue API、组件、工具函数
+
+## 🎯 开发路线图
+
+- 短期目标 : 添加测试框架、完善组件文档
+- 中期目标 : 优化项目结构、添加 CI/CD
+- 长期目标 : 性能监控、安全审计

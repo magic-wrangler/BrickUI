@@ -47,7 +47,8 @@ import { useCounterStore } from '@/stores/counter';
 
 const counterStore = useCounterStore();
 
-const handleClick = () => {
+const handleClick = (): void => {
+  // eslint-disable-next-line no-console
   console.log('Button clicked!');
 };
 </script>

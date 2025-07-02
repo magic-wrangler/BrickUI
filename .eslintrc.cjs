@@ -1,5 +1,6 @@
 module.exports = {
   root: true,
+  ignorePatterns: ['src/typings/**/*', '**/*.d.ts', 'node_modules', 'dist'],
   env: {
     node: true,
     browser: true,
@@ -10,6 +11,7 @@ module.exports = {
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier',
     'plugin:vue/vue3-essential',
+    'plugin:@typescript-eslint/recommended',
     './.eslintrc-auto-import.json'
   ],
   parser: 'vue-eslint-parser',
@@ -35,10 +37,18 @@ module.exports = {
     'quote-props': ['error', 'as-needed'],
     // 要求或禁止末尾逗号
     'comma-dangle': ['error', 'never'],
+    // TypeScript 严格规则
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-explicit-any': 'error',
     // Vue 特定规则
     'vue/html-quotes': ['error', 'double'],
     'vue/component-name-in-template-casing': ['error', 'PascalCase'],
     'vue/component-definition-name-casing': ['error', 'PascalCase'],
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    // 代码质量规则
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-debugger': 'error',
+    'prefer-const': 'error',
+    'no-var': 'error'
   }
 };
