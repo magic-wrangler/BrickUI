@@ -150,3 +150,5 @@ Thumbs.db
 # Temporary folders
 tmp/
 temp/
+
+playwright-report/
