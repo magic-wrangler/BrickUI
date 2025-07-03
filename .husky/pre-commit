@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run lint
-npm run format
+# 运行 lint-staged
+npx lint-staged
+
+# 类型检查
+npm run type-check
+
+# 运行测试（当测试框架配置完成后启用）
+# npm run test -- --run --reporter=verbose

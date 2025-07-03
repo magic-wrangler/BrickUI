@@ -13,35 +13,83 @@
 ## 📦 安装
 
 ```bash
-npm install
+pnpm install
 ```
 
-## 🛠️ 开发
-
-启动开发服务器：
+## 🚀 开发
 
 ```bash
-npm run dev
-```
+# 安装依赖
+pnpm install
 
-启动 Storybook：
+# 启动开发服务器
+pnpm dev
 
-```bash
-npm run storybook
+# 启动 Storybook
+pnpm storybook
+
+# 运行测试
+pnpm test
+
+# 运行测试（UI 模式）
+pnpm test:ui
+
+# 运行测试覆盖率
+pnpm test:coverage
+
+# 运行 E2E 测试
+pnpm test:e2e
 ```
 
 ## 🏗️ 构建
 
-构建生产版本：
-
 ```bash
-npm run build
+# 构建项目
+pnpm build
+
+# 构建组件库
+pnpm build:lib
+
+# 构建 Storybook
+pnpm build-storybook
+
+# 预览构建结果
+pnpm preview
 ```
 
-构建 Storybook：
+## 🔍 代码质量
 
 ```bash
-npm run build-storybook
+# ESLint 检查
+pnpm lint
+
+# ESLint 检查（仅检查，不修复）
+pnpm lint:check
+
+# 代码格式化
+pnpm format
+
+# 代码格式检查
+pnpm format:check
+
+# TypeScript 类型检查
+pnpm type-check
+```
+
+## 📦 发布
+
+```bash
+# 发布补丁版本
+pnpm release:patch
+
+# 发布次版本
+pnpm release:minor
+
+# 发布主版本
+pnpm release:major
+
+# 提交代码（使用 commitizen）
+pnpm commit
 ```
 
 ## 🎯 代码质量
@@ -80,6 +128,7 @@ npm run format
 - TypeScript 单引号偏好设置
 
 推荐安装以下 VS Code 扩展：
+
 - ESLint
 - Prettier - Code formatter
 - Vue Language Features (Volar)
@@ -199,15 +248,15 @@ BrickUI 遵循一致的设计系统：
 
 ```typescript
 // 无需导入，直接使用
-const count = ref(0)
-const message = reactive({ text: 'Hello' })
-const router = useRouter()
-const store = useStore()
+const count = ref(0);
+const message = reactive({ text: 'Hello' });
+const router = useRouter();
+const store = useStore();
 
 // VueUse 工具函数
-const { x, y } = useMouse()
-const isDark = useDark()
-const storage = useLocalStorage('key', 'default')
+const { x, y } = useMouse();
+const isDark = useDark();
+const storage = useLocalStorage('key', 'default');
 ```
 
 ### 自动导入的组件
@@ -236,6 +285,55 @@ const storage = useLocalStorage('key', 'default')
 npm run storybook
 ```
 
+## 项目结构
+
+```
+BrickUI/
+├── .github/                 # GitHub 配置
+│   ├── workflows/           # CI/CD 工作流
+│   │   ├── ci.yml          # 持续集成
+│   │   └── release.yml     # 发布流程
+│   ├── ISSUE_TEMPLATE/      # Issue 模板
+│   └── PULL_REQUEST_TEMPLATE.md
+├── docs/                    # 项目文档
+│   ├── components/          # 组件文档
+│   ├── contributing.md      # 贡献指南
+│   ├── design-principles.md # 设计原则
+│   └── README.md           # 文档首页
+├── src/
+│   ├── components/          # 组件目录
+│   │   ├── BrickButton.vue
+│   │   ├── BrickButton.stories.ts
+│   │   ├── BrickCard.vue
+│   │   └── BrickCard.stories.ts
+│   ├── stores/              # Pinia 状态管理
+│   ├── typings/             # 类型声明文件
+│   ├── App.vue              # 根组件
+│   ├── main.ts              # 入口文件
+│   └── index.ts             # 组件库入口
+├── tests/                   # 测试文件
+│   ├── components/          # 组件测试
+│   ├── e2e/                # E2E 测试
+│   └── setup.ts            # 测试配置
+├── .storybook/              # Storybook 配置
+├── public/                  # 静态资源
+├── .husky/                  # Git hooks
+├── .eslintrc.cjs            # ESLint 配置
+├── .lintstagedrc.json       # Lint-staged 配置
+├── .gitignore
+├── .prettierrc              # Prettier 配置
+├── CHANGELOG.md             # 更新日志
+├── commitlint.config.cjs    # Commitlint 配置
+├── package.json
+├── playwright.config.ts     # Playwright 配置
+├── tsconfig.json            # TypeScript 配置
+├── uno.config.ts            # UnoCSS 配置
+├── vite.config.ts           # Vite 配置
+├── vite.config.lib.ts       # 库构建配置
+├── vitest.config.ts         # Vitest 配置
+└── README.md
+```
+
 ## 🤝 贡献
 
 欢迎贡献代码！请在提交 Pull Request 之前阅读贡献指南。
@@ -249,6 +347,7 @@ npm run storybook
 ### v0.2.0 (2024-12-19)
 
 **🔧 代码质量增强**
+
 - ✅ 启用 TypeScript 严格模式
   - 添加完整的严格类型检查配置
   - 包括 `strict`、`noImplicitAny`、`strictNullChecks` 等选项
@@ -264,6 +363,7 @@ npm run storybook
   - 确保所有代码质量工具正常工作
 
 **📈 开发体验提升**
+
 - 更严格的类型检查帮助在开发阶段捕获潜在错误
 - 统一的代码风格和质量标准
 - 更好的 IDE 支持和错误提示
@@ -271,6 +371,7 @@ npm run storybook
 ### v0.1.0 (2024-12-18)
 
 **🎉 初始版本**
+
 - ✅ 基础项目架构搭建
 - ✅ Vue 3 + TypeScript + Vite 开发环境
 - ✅ Pinia 状态管理集成
