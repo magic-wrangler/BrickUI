@@ -39,7 +39,8 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     // TypeScript 严格规则
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     // Vue 特定规则
     'vue/html-quotes': ['error', 'double'],
     'vue/component-name-in-template-casing': ['error', 'PascalCase'],

@@ -1,0 +1,44 @@
+name: Generate Reports
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # 每周一早上6点
+  workflow_dispatch:
+
+jobs:
+  generate-reports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Start dev server
+        run: |
+          npm run dev &
+          sleep 10
+      
+      - name: Generate performance report
+        run: npm run report:performance
+      
+      - name: Generate security report
+        run: npm run report:security
+      
+      - name: Upload reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports
+          path: reports/
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
+          destination_dir: reports

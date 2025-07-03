@@ -1,0 +1,61 @@
+name: Security Auto Fix
+on:
+  schedule:
+    - cron: '0 2 * * 1'  # 每周一凌晨2点
+  workflow_dispatch:
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Run security audit
+        run: |
+          pnpm audit --audit-level moderate --json > audit-results.json
+          
+      - name: Auto fix vulnerabilities
+        run: |
+          pnpm audit --fix
+          
+      - name: Run Snyk test
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high --json > snyk-results.json
+          
+      - name: Auto fix Snyk issues
+        run: |
+          npx snyk fix
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'fix: auto-fix security vulnerabilities'
+          title: '🔒 Auto Security Fix'
+          body: |
+            ## 🛡️ 自动安全修复
+            
+            此PR包含自动检测和修复的安全漏洞：
+            
+            ### 修复内容
+            - 依赖包安全更新
+            - 漏洞自动修复
+            - 安全配置优化
+            
+            ### 扫描报告
+            详细报告请查看Actions日志
+          branch: security/auto-fix
